@@ -1,36 +1,49 @@
-const userNameContainer = document.querySelector(".userName-container"),
-greetingContainer = userNameContainer.querySelector(".greeting"),
-userNameGreeting = greetingContainer.querySelector(".userName-greeting"),
-userNameModiBtn = greetingContainer.querySelector(".userName-modiBtn"),
-userNameForm = userNameContainer.querySelector(".userName-form"),
-userNameInput = userNameForm.querySelector(".userName-input");
+const greetingContainer = document.querySelector(".greeting"),
+userNameGreeting = document.querySelector(".userName-greeting"),
+userNameModiBtn = document.querySelector(".userName-modiBtn"),
+userNameForm = document.querySelector(".userName-form"),
+userNameInput = document.querySelector(".userName-input");
 
 const USER_NAME = "userName";
 
-function showUserName(){
-  const userName_LS = window.localStorage.getItem(USER_NAME);
-  if(userName_LS){
-    greetingContainer.classList.add("show");
-    userNameGreeting.innerText = `Welcome ${userName_LS} ^__^`;
-    userNameModiBtn.addEventListener("click",modiNaming);
-  }else{
+
+function saveUserName(name){
+  localStorage.setItem(USER_NAME,name);
+}
+
+function modiNaming(event){
+  const userName_LS = localStorage.getItem(USER_NAME);
+  event.preventDefault();
+  greetingContainer.classList.remove("show");
+  userNameForm.classList.add("show");
+  userNameInput.value = userName_LS;
+}
+
+function submitUserName(event){
+  event.preventDefault();
+  const name = userNameInput.value;
+  if(name !== ""){
+    saveUserName(name);
+    showUserName(name);
+  }
+  userNameInput.value = "";
+}
+
+function showUserName(name){
+  const userName_LS = localStorage.getItem(USER_NAME);
+  if(userName_LS === null){
     greetingContainer.classList.remove("show");
     userNameForm.classList.add("show");
-    saveUserName();
+  }else {
+    greetingContainer.classList.add("show");
+    userNameForm.classList.remove("show");
+    userNameGreeting.innerText = `Welcome ${userName_LS} ^__^`;
   }
 }
 
-function modiNaming(){
-  greetingContainer.classList.remove("show");
-  userNameForm.classList.add("show");
-  userNameInput.value = USER_NAME;
-}
-function saveUserName(){
-
-}
-
-
 function init(){
   showUserName();
+  userNameForm.addEventListener("submit",submitUserName);
+  userNameModiBtn.addEventListener("click",modiNaming);
 }
 init();
