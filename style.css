@@ -1,0 +1,8 @@
+.greeting,
+.userName-form {
+  display: none;
+}
+
+.show {
+  display: block;
+}
