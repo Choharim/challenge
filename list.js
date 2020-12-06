@@ -3,10 +3,35 @@ listInput = document.querySelector(".list-input"),
 listToDos = document.querySelector(".list-todos");
 
 const TODOS = "toDos";
-const toDosArray = [];
+let toDosArray = [];
 
 function saveToDos(){
   localStorage.setItem(TODOS,JSON.stringify(toDosArray));
+}
+
+function modiToDo(event){
+  const clickedModi = event.target;
+  const clickedDiv = clickedModi.parentNode;
+  const clickedID = clickedDiv.id;
+  const clickedToDo = clickedDiv.firstChild.innerText;
+
+  if(listInput.value !== ""){
+    return;
+  }
+ 
+  clickedDiv.remove();
+  listInput.value = clickedToDo;
+  
+  const refreshArray = toDosArray.filter(function(todo){
+    return todo.id !== parseInt(clickedID);
+  });
+  let todoCount = 1;
+  refreshArray.forEach(function(obj){
+    obj.id = todoCount;
+    todoCount++;
+  });
+  toDosArray = refreshArray;
+  saveToDos();
 }
 
 function showToDo(todo){
@@ -25,13 +50,14 @@ function showToDo(todo){
   li.innerText = todo;
 
   const todoID = toDosArray.length + 1;
-  div.classList.add(todoID);
+  div.id = todoID;
   const todoObj = {
     id : todoID,
     todo
   };
   toDosArray.push(todoObj);
   saveToDos();
+  modiBtn.addEventListener("click",modiToDo);
 }
 
 function submitListForm(event){
