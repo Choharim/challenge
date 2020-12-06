@@ -9,6 +9,28 @@ function saveToDos(){
   localStorage.setItem(TODOS,JSON.stringify(toDosArray));
 }
 
+function delToDo(event){
+  const clickedDel = event.target;
+  const clickedDiv = clickedDel.parentNode;
+  const clickedID = clickedDiv.id;
+
+  if(listInput.value !== ""){
+    return;
+  }
+  clickedDiv.remove();
+  const delIndex = toDosArray.findIndex(function(todo){
+    return todo.id === parseInt(clickedID);
+  });
+  toDosArray.splice(delIndex,1);
+  let todoCount =1;
+  toDosArray.forEach(function(obj,index){
+    obj.id = todoCount;
+    obj.todo = toDosArray[index].todo;
+    todoCount++;
+  });
+  saveToDos();
+}
+
 function modiToDo(event){
   const clickedModi = event.target;
   const clickedDiv = clickedModi.parentNode;
@@ -26,8 +48,9 @@ function modiToDo(event){
     return todo.id !== parseInt(clickedID);
   });
   let todoCount = 1;
-  refreshArray.forEach(function(obj){
+  refreshArray.forEach(function(obj,index){
     obj.id = todoCount;
+    obj.todo = refreshArray[index].todo;
     todoCount++;
   });
   toDosArray = refreshArray;
@@ -58,6 +81,7 @@ function showToDo(todo){
   toDosArray.push(todoObj);
   saveToDos();
   modiBtn.addEventListener("click",modiToDo);
+  delBtn.addEventListener("click",delToDo);
 }
 
 function submitListForm(event){
