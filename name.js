@@ -24,12 +24,12 @@ function submitUserName(event){
   const name = userNameInput.value;
   if(name !== ""){
     saveUserName(name);
-    showUserName(name);
+    showUserName();
   }
   userNameInput.value = "";
 }
 
-function showUserName(name){
+function showUserName(){
   const userName_LS = localStorage.getItem(USER_NAME);
   if(userName_LS === null){
     greetingContainer.classList.remove("show");
