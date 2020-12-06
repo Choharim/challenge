@@ -13,11 +13,17 @@ function delToDo(event){
   const clickedDel = event.target;
   const clickedDiv = clickedDel.parentNode;
   const clickedID = clickedDiv.id;
+  const showToDos = listToDos.childNodes;
 
   if(listInput.value !== ""){
     return;
   }
   clickedDiv.remove();
+  let showCount = 1;
+  showToDos.forEach(function(todo){
+    todo.id = showCount;
+    showCount++;
+  });
   const delIndex = toDosArray.findIndex(function(todo){
     return todo.id === parseInt(clickedID);
   });
@@ -29,6 +35,7 @@ function delToDo(event){
     todoCount++;
   });
   saveToDos();
+  ///////실제 아이디 다시 순서대로 바꿔야함.
 }
 
 function modiToDo(event){
@@ -36,6 +43,7 @@ function modiToDo(event){
   const clickedDiv = clickedModi.parentNode;
   const clickedID = clickedDiv.id;
   const clickedToDo = clickedDiv.firstChild.innerText;
+  const showToDos = listToDos.childNodes; 
 
   if(listInput.value !== ""){
     return;
@@ -44,6 +52,11 @@ function modiToDo(event){
   clickedDiv.remove();
   listInput.value = clickedToDo;
   
+  let showCount = 1;
+  showToDos.forEach(function(todo){
+    todo.id = showCount;
+    showCount++;
+  });
   const refreshArray = toDosArray.filter(function(todo){
     return todo.id !== parseInt(clickedID);
   });
@@ -55,6 +68,7 @@ function modiToDo(event){
   });
   toDosArray = refreshArray;
   saveToDos();
+  ///////실제 아이디 다시 순서대로 바꿔야함.
 }
 
 function showToDo(todo){
