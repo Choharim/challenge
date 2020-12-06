@@ -35,7 +35,6 @@ function delToDo(event){
     todoCount++;
   });
   saveToDos();
-  ///////실제 아이디 다시 순서대로 바꿔야함.
 }
 
 function modiToDo(event){
@@ -68,7 +67,6 @@ function modiToDo(event){
   });
   toDosArray = refreshArray;
   saveToDos();
-  ///////실제 아이디 다시 순서대로 바꿔야함.
 }
 
 function showToDo(todo){

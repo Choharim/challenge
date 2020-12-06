@@ -8,11 +8,16 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
     />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="clock-container">
-      <span class="clock"></span>
+      <h1 class="clock"></h1>
       <span class="date"></span>
     </div>
     <div class="weather-container">
@@ -21,7 +26,9 @@
     <div class="userName-container">
       <div class="greeting">
         <span class="userName-greeting"></span>
-        <button class="userName-modiBtn"><i class="fas fa-eraser"></i></button>
+        <button class="userName-modiBtn">
+          <i class="fas fa-eraser"></i>
+        </button>
       </div>
       <form class="userName-form">
         <input class="userName-input" placeholder="What's your name?" />

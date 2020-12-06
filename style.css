@@ -1,5 +1,9 @@
 * {
-  color: tomato;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+  font-family: "Merriweather", serif;
 }
 
 .greeting,
@@ -8,10 +12,109 @@
 }
 
 .show {
-  display: block;
+  display: flex;
+  justify-content: center;
 }
 
 .fas,
 .far {
   pointer-events: none;
+}
+
+body {
+  width: 100%;
+}
+
+.clock-container {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  width: 50%;
+  height: 90px;
+  margin: 200px auto 0 auto;
+  background-color: black;
+  opacity: 0.58;
+  border-radius: 10px;
+}
+
+.clock {
+  margin: 10px 20px;
+  font-size: 3rem;
+}
+
+.date {
+  margin: 10px 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.weather-container {
+  width: 100%;
+  height: 100%;
+}
+
+.weather {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  font-size: 1.1rem;
+  color: black;
+  width: 170px;
+  height: 30px;
+  background-color: white;
+  opacity: 0.4;
+  border-radius: 50%;
+  text-align: center;
+  padding: 3px;
+}
+
+.userName-container {
+  width: 100%;
+}
+
+.userName-form {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.userName-input {
+  color: black;
+  width: 240px;
+  height: 38px;
+  text-align: center;
+  outline: none;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px solid white;
+  color: white;
+  font-size: 1.3rem;
+}
+
+.userName-input::placeholder {
+  color: white;
+  font-size: 1.3rem;
+  font-style: italic;
+}
+
+.greeting {
+  width: 100%;
+  height: 59px;
+  padding-top: 20px;
+}
+
+.userName-greeting {
+  font-size: 1.5rem;
+}
+
+.userName-modiBtn {
+  background-color: transparent;
+  padding: 0 10px;
+  width: 60px;
+  outline: none;
+  border: none;
+}
+
+.fa-eraser {
+  width: 100%;
+  font-size: 15px;
 }

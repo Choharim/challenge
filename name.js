@@ -37,7 +37,7 @@ function showUserName(){
   }else {
     greetingContainer.classList.add("show");
     userNameForm.classList.remove("show");
-    userNameGreeting.innerText = `Welcome ${userName_LS} ^__^`;
+    userNameGreeting.innerText = `Welcome ${userName_LS}`;
   }
 }
 

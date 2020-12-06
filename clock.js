@@ -10,7 +10,7 @@ function getTime(){
   const currentDate = new Intl.DateTimeFormat('ko-KR').format(currentTime);
 
   clock.innerText = `${currentHour <10 ? `0${currentHour}` : currentHour} : ${currentMinute <10? `0${currentMinute}` : currentMinute} : ${currentSecond <10 ? `0${currentSecond}` : currentSecond}`;
-  date.innerText=`at ${currentDate}`;
+  date.innerText=`${currentDate}`;
 }
 
 function init(){
