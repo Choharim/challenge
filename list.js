@@ -6,7 +6,7 @@ const TODOS = "toDos";
 const toDosArray = [];
 
 function saveToDos(){
-  
+  localStorage.setItem(TODOS,JSON.stringify(toDosArray));
 }
 
 function showToDo(todo){
@@ -22,9 +22,12 @@ function showToDo(todo){
 
   modiBtn.innerHTML = `<i class="fas fa-arrow-circle-left"></i>`;
   delBtn.innerHTML = `<i class="far fa-times-circle"></i>`;
+  li.innerText = todo;
 
+  const todoID = toDosArray.length + 1;
+  div.classList.add(todoID);
   const todoObj = {
-    id : toDosArray.length + 1,
+    id : todoID,
     todo
   };
   toDosArray.push(todoObj);
@@ -37,6 +40,7 @@ function submitListForm(event){
 
   if(listInputValue !== ""){
     showToDo(listInputValue);
+    listInput.value = "";
   }
 }
 
@@ -45,7 +49,9 @@ function init(){
   const pars_toDos_LS = JSON.parse(str_toDos_LS);
   
   if(pars_toDos_LS !== null){
-    pars_toDos_LS.forEach();
+    pars_toDos_LS.forEach(function(todo){
+      showToDo(todo.todo);
+    });
   }
   
   listForm.addEventListener("submit",submitListForm);
